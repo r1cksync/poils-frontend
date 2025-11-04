@@ -127,7 +127,7 @@ export default function ChatWindow({
           </div>
         ) : (
           <>
-            {chat.messages.map((msg, index) => (
+            {chat.messages?.map((msg, index) => (
               <div
                 key={index}
                 className={`flex ${

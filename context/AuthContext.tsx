@@ -34,10 +34,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           setUser(response.data.user);
         }
       }
-    } catch (error) {
-      console.error('Auth check failed:', error);
+    } catch (error: any) {
+      // Silently fail - don't show error on landing page
+      console.log('Auth check skipped or failed:', error.message);
       Cookies.remove('token');
     } finally {
+      // Always set loading to false so UI can render
       setLoading(false);
     }
   };

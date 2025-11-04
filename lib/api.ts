@@ -30,9 +30,12 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Redirect to login on unauthorized
+      // Redirect to login on unauthorized, but not from landing page
       Cookies.remove('token');
-      if (typeof window !== 'undefined' && !window.location.pathname.includes('/login')) {
+      if (typeof window !== 'undefined' && 
+          !window.location.pathname.includes('/login') && 
+          !window.location.pathname.includes('/signup') &&
+          window.location.pathname !== '/') {
         window.location.href = '/login';
       }
     }
